@@ -1,4 +1,4 @@
 interface:
-  display_name: "抖音全域有消耗零产出清理"
-  short_description: "连续观察并安全删除全域计划中有消耗但零产出的视频素材"
-  default_prompt: "使用 $douyin-global-spend-zero-revenue-cleanup 根据两次观察结果预演，核对后删除并回读。"
+  display_name: "抖音全域删除有消耗0产出"
+  short_description: "按前后两次观察结果删除有消耗但0产出的视频素材"
+  default_prompt: "使用 $douyin-global-spend-zero-revenue-cleanup 按观察账本处理有消耗0产出视频。"

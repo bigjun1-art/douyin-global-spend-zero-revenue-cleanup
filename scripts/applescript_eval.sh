@@ -6,6 +6,7 @@ ADID=""
 PT=""
 CODE=""
 ACTIVATE="false"
+ALLOW_FOREGROUND="false"
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -14,9 +15,15 @@ while [[ $# -gt 0 ]]; do
         --pt) PT="${2:-}"; shift 2 ;;
         --code) CODE="${2:-}"; shift 2 ;;
         --activate) ACTIVATE="true"; shift ;;
+        --allow-foreground) ALLOW_FOREGROUND="true"; shift ;;
         *) echo "ERROR: unknown argument: $1" >&2; exit 2 ;;
     esac
 done
+
+if [[ "$ACTIVATE" == "true" && "$ALLOW_FOREGROUND" != "true" ]]; then
+    echo "ERROR: FOREGROUND_OPT_IN_REQUIRED: use --allow-foreground only for an authorized fallback" >&2
+    exit 2
+fi
 
 if [[ ! "$ADVID" =~ ^[0-9]+$ ]] || [[ ! "$ADID" =~ ^[0-9]+$ ]]; then
     echo "ERROR: --advid and --adid are required numeric identifiers" >&2
